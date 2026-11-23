@@ -44,3 +44,6 @@
 - No hacer commit ni push.
 
 ## Lecciones aprendidas
+- Configura `SECRET_KEY` desde el entorno en despliegues persistentes; si falta, genera una clave aleatoria para evitar errores de sesión y no codifiques secretos.
+- Aplica el mismo límite máximo de 128 caracteres a las contraseñas tanto al registrarse como al iniciar sesión.
+- Compara nombres de usuario con `casefold()` para detectar duplicados Unicode que SQLite `NOCASE` no reconoce.
