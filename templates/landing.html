@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Organiza tu día{% endblock %}
+{% block content %}
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="eyebrow-dot"></span> TU ESPACIO, TU RITMO</span>
+      <h1>Menos ruido.<br><span>Más enfoque.</span></h1>
+      <p class="hero-text">Organiza lo que tienes en mente y avanza, una tarea a la vez. Tu lista siempre está contigo.</p>
+      <div class="hero-actions">
+        <a class="button button-dark button-large" href="{{ url_for('register') }}">Empieza gratis <span aria-hidden="true">↗</span></a>
+        <a class="text-link" href="{{ url_for('login') }}">Ya tengo una cuenta <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="hero-note"><span class="note-check">✓</span> Privado y personal. Tus tareas son solo tuyas.</div>
+    </div>
+    <div class="hero-art" aria-label="Vista previa de una lista de tareas">
+      <div class="sun-shape"></div>
+      <div class="preview-card">
+        <div class="preview-top"><span class="preview-date">LUNES, 19 OCT</span><span class="preview-menu">•••</span></div>
+        <h2>Un buen día<br>empieza aquí.</h2>
+        <p class="preview-subtitle">3 cosas en tu lista</p>
+        <div class="preview-task"><span class="fake-check checked">✓</span><span class="crossed">Preparar el café</span><span class="task-star">✳</span></div>
+        <div class="preview-task"><span class="fake-check"></span><span>Terminar ese proyecto</span><span class="task-star muted-star">✳</span></div>
+        <div class="preview-task"><span class="fake-check"></span><span>Salir a caminar</span><span class="task-star muted-star">✳</span></div>
+        <div class="preview-progress"><span></span></div>
+        <div class="preview-caption">Un pequeño avance también cuenta.</div>
+      </div>
+      <div class="floating-note"><span>✦</span> A tu ritmo</div>
+    </div>
+  </section>
+  <section class="benefits">
+    <div class="benefit"><span class="benefit-icon">↗</span><div><strong>Todo en un lugar</strong><p>Una lista clara, sin complicaciones.</p></div></div>
+    <div class="benefit"><span class="benefit-icon benefit-lilac">✓</span><div><strong>Avanza a tu manera</strong><p>Marca lo que logras, cada día.</p></div></div>
+    <div class="benefit"><span class="benefit-icon benefit-yellow">♡</span><div><strong>Solo para ti</strong><p>Tu cuenta mantiene tus tareas privadas.</p></div></div>
+  </section>
+{% endblock %}

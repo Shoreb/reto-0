@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Editar tarea{% endblock %}
+{% block content %}
+  <section class="edit-layout">
+    <a class="back-link" href="{{ url_for('index') }}">← Volver a mis tareas</a>
+    <form class="form-card edit-card" method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <span class="form-kicker">UN AJUSTE A LA VEZ</span>
+      <h2>Editar tarea</h2>
+      <p class="form-hint">Actualiza los detalles de esta tarea.</p>
+      <label for="title">Título</label>
+      <input id="title" name="title" type="text" value="{{ task.title }}" maxlength="120" required autofocus>
+      <label for="description">Descripción <span>(opcional)</span></label>
+      <textarea id="description" name="description" maxlength="2000" rows="5">{{ task.description }}</textarea>
+      <button class="button button-dark button-full" type="submit">Guardar cambios <span aria-hidden="true">→</span></button>
+    </form>
+  </section>
+{% endblock %}
