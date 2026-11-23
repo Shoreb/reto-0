@@ -33,6 +33,8 @@ def create_app(test_config=None):
     )
     if test_config:
         app.config.update(test_config)
+    if not app.config["SECRET_KEY"]:
+        app.config["SECRET_KEY"] = secrets.token_hex(32)
 
     Path(app.instance_path).mkdir(parents=True, exist_ok=True)
     initialize_database(app)
@@ -109,9 +111,12 @@ def create_app(test_config=None):
                 error = "La contraseña debe tener al menos 8 caracteres."
             elif len(password) > 128:
                 error = "La contraseña no puede superar los 128 caracteres."
-            elif get_database().execute(
-                "SELECT id FROM users WHERE username = ?", (username,)
-            ).fetchone():
+            elif any(
+                existing_user["username"].casefold() == username.casefold()
+                for existing_user in get_database().execute(
+                    "SELECT username FROM users"
+                ).fetchall()
+            ):
                 error = "Ese nombre de usuario ya está registrado."
 
             if error is None:
@@ -137,7 +142,11 @@ def create_app(test_config=None):
                 (username,),
             ).fetchone()
 
-            if user is None or not check_password_hash(user["password_hash"], password):
+            if len(password) > 128:
+                flash("La contraseña no puede superar los 128 caracteres.", "error")
+            elif user is None or not check_password_hash(
+                user["password_hash"], password
+            ):
                 flash("Usuario o contraseña incorrectos.", "error")
             else:
                 session.clear()
